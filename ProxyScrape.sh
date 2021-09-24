@@ -22,7 +22,7 @@ error() {
     exit 1
 }
 
-for cmd in wc curl flock mktemp mv dos2unix; do
+for cmd in wc curl flock mktemp mv dos2unix sort uniq xargs; do
     if ! command -v $cmd &> /dev/null; then
         error "command: $cmd not found!"
     fi
@@ -48,7 +48,15 @@ for URL in "${SOCKS5_PROXY_SOURCE[@]}"; do
     fi
 done
 
-echo.Cyan "Whole list saved to $SOCKS5_PROXY_LIST, $(wc -l < "$SOCKS5_PROXY_LIST") proxy found!"
+echo.Cyan "Deduplicating proxy hosts..."
+SOCKS5_PROXY_LIST_COUNT_OLD="$(wc -l < "$SOCKS5_PROXY_LIST")"
+sort "$SOCKS5_PROXY_LIST" | uniq | xargs -n 1 > "$TEMP"
+mv "$TEMP" "$SOCKS5_PROXY_LIST"
+SOCKS5_PROXY_LIST_COUNT_NEW="$(wc -l < "$SOCKS5_PROXY_LIST")"
+SOCKS5_PROXY_LIST_COUNT_DIFF="$((SOCKS5_PROXY_LIST_COUNT_OLD - SOCKS5_PROXY_LIST_COUNT_NEW))"
+echo.Cyan "Deduplicated proxy hosts from $SOCKS5_PROXY_LIST_COUNT_OLD to $SOCKS5_PROXY_LIST_COUNT_NEW, $SOCKS5_PROXY_LIST_COUNT_DIFF removed"
+
+echo.Cyan "Whole list saved to $SOCKS5_PROXY_LIST"
 
 echo.Cyan "Testing proxy hosts with target host - $TEST_TARGET_HOST ..."
 
