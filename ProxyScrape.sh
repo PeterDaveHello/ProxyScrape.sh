@@ -28,7 +28,7 @@ for cmd in wc curl flock mktemp mv dos2unix sort uniq xargs; do
     fi
 done
 
-SOCKS5_PROXY_SOURCE=("https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all" "https://www.proxyscan.io/download?type=socks5" "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt")
+SOCKS5_PROXY_SOURCE=("https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all" "https://www.proxyscan.io/download?type=socks5" "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt" "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt" "https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies.txt" "https://raw.githubusercontent.com/manuGMG/proxy-365/main/SOCKS5.txt" "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt")
 
 if [ -z "$SOCKS5_PROXY_LIST" ]; then
     SOCKS5_PROXY_LIST="$(mktemp --suffix=-ProxyScrape.sh)"
