@@ -17,6 +17,10 @@ echo.Green() {
   echo -e "\\033[32m$*\\033[m"
 }
 
+echo.Yellow() {
+  echo -e "\\033[33m$*\\033[m"
+}
+
 error() {
     echo.Red >&2 "$@"
     exit 1
@@ -81,6 +85,12 @@ done < "$SOCKS5_PROXY_LIST"
 echo.Cyan "Waiting for proxy test result..."
 
 wait
+
+if [ ! -r "$TEMP" ]; then
+    echo.Yellow "None of the proxies received proper response from target $TEST_TARGET_HOST, you may need another \$TEST_TARGET_HOST to test the proxies."
+    echo.Yellow "Proxy list saved to $SOCKS5_PROXY_LIST"
+    error "Proxy scrape failed!!"
+fi
 
 mv "$TEMP" "$SOCKS5_PROXY_LIST"
 echo.Green "SOCKS5_PROXY_LIST filtered, $(wc -l < "$SOCKS5_PROXY_LIST") proxy found!"
