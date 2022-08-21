@@ -30,6 +30,7 @@ done
 
 SOCKS5_PROXY_SOURCE=(
     "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all"
+    "https://www.proxy-list.download/api/v1/get?type=socks5"
     "https://www.proxyscan.io/download?type=socks5"
     "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt"
     "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt"
