@@ -41,6 +41,7 @@ SOCKS5_PROXY_SOURCE=(
     "https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies.txt"
     "https://raw.githubusercontent.com/manuGMG/proxy-365/main/SOCKS5.txt"
     "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt"
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt"
 )
 
 if [ -z "$SOCKS5_PROXY_LIST" ]; then
